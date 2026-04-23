@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Máquina de Matrículas — Call ao vivo, segunda 14h</title>
+<meta name="description" content="Call ao vivo e gratuita para gestores de instituições de ensino — escolas, autoescolas, faculdades, cursos técnicos. Transforme sua instituição em uma máquina de matrículas." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Anton', 'Impact', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50:  '#FFF3EC',
+            100: '#FFE2D0',
+            200: '#FFC4A0',
+            300: '#FFA06A',
+            400: '#FF7A3B',
+            500: '#EA5420',
+            600: '#D04518',
+            700: '#A8360F',
+            800: '#7A260A',
+            900: '#3A1204',
+          },
+          ink: '#15110E',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #15110E; background: #fff; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: 'Anton', Impact, sans-serif; letter-spacing: 0.01em; }
+  .headline { line-height: 1.05; text-transform: uppercase; }
+  .btn-primary {
+    background: #EA5420;
+    color: #fff;
+    box-shadow: 0 10px 24px -8px rgba(234,84,32,.55), inset 0 -3px 0 rgba(0,0,0,.12);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+  }
+  .btn-primary:hover { background: #D04518; transform: translateY(-1px); box-shadow: 0 14px 28px -8px rgba(234,84,32,.65), inset 0 -3px 0 rgba(0,0,0,.15); }
+  .btn-primary:active { transform: translateY(0); }
+  .input {
+    width: 100%;
+    background: #fff;
+    color: #15110E;
+    border: 1.5px solid #E8E1DB;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 16px;
+    transition: border .15s ease, box-shadow .15s ease;
+  }
+  .input:focus { outline: none; border-color: #EA5420; box-shadow: 0 0 0 4px rgba(234,84,32,.15); }
+  .input::placeholder { color: #9A8F86; }
+  .hero-bg, .cta-bg {
+    background:
+      radial-gradient(1100px 500px at 90% -10%, rgba(255,255,255,.18), transparent 60%),
+      radial-gradient(700px 400px at 0% 110%, rgba(0,0,0,.22), transparent 60%),
+      linear-gradient(135deg, #F16322 0%, #EA5420 45%, #C43C11 100%);
+  }
+  /* Subtle doodle pattern layered over the hero bg for texture */
+  .hero-bg::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    opacity: .6;
+    pointer-events: none;
+  }
+  .portrait-frame {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #EA5420;
+    box-shadow: 0 40px 80px -40px rgba(234,84,32,.5), 0 0 0 1px rgba(234,84,32,.15);
+    position: relative;
+  }
+  .portrait-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 72% 30%;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.12); color: #fff;
+    border: 1px solid rgba(255,255,255,.25);
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; letter-spacing: .02em;
+    backdrop-filter: blur(6px);
+  }
+  .chip-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #FFF3EC; color: #D04518;
+    border: 1px solid #FFD6BF;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .card {
+    background: #fff; border: 1px solid #EFE8E1; border-radius: 16px;
+    padding: 28px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(21,17,14,.18); border-color: #FFD6BF; }
+  .num-badge {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: #FFF3EC; color: #D04518;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Anton', Impact, sans-serif; font-size: 22px;
+  }
+  .check::before {
+    content: ""; display: inline-block; width: 20px; height: 20px; margin-right: 12px;
+    background: #EA5420;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/70% no-repeat;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/70% no-repeat;
+    border-radius: 6px; flex-shrink: 0; transform: translateY(3px);
+  }
+  .check { display: flex; align-items: flex-start; }
+  .divider-dots {
+    background-image: radial-gradient(#FFD6BF 1.2px, transparent 1.3px);
+    background-size: 14px 14px;
+    height: 28px;
+  }
+  .stage-pill {
+    font-family: 'Anton', Impact, sans-serif; font-size: 18px; letter-spacing: .08em;
+    background: #15110E; color: #fff; padding: 8px 18px; border-radius: 999px;
+    display: inline-block;
+  }
+  .arrow-connector {
+    width: 36px; height: 2px; background: #FFD6BF; position: relative;
+  }
+  .arrow-connector::after {
+    content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
+    border-left: 8px solid #FFD6BF; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+  }
+  /* form message */
+  .form-ok {
+    background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;
+    border-radius: 10px; padding: 12px 14px; font-size: 14px; font-weight: 500;
+  }
+  /* subtle top nav */
+  .nav-shadow { box-shadow: 0 1px 0 rgba(21,17,14,.06); }
+
+  /* ============ Magnet animations ============ */
+  .magnet-wrap { position: relative; overflow: visible; }
+  .magnet-icon {
+    transform-origin: 50% 88%;
+    animation: magnetWiggle 2.8s ease-in-out infinite;
+  }
+  @keyframes magnetWiggle {
+    0%, 100% { transform: rotate(-7deg); }
+    50%      { transform: rotate(7deg); }
+  }
+  .magnet-ring {
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(234,84,32,.55);
+    animation: magnetRing 2.1s cubic-bezier(.12,.55,.2,1) infinite;
+  }
+  @keyframes magnetRing {
+    0%   { box-shadow: 0 0 0 0 rgba(234,84,32,.55); opacity: .9; }
+    100% { box-shadow: 0 0 0 14px rgba(234,84,32,0); opacity: 0; }
+  }
+
+  /* ============ Scroll progress bar ============ */
+  #scrollProgress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #F16322, #EA5420, #D04518);
+    z-index: 60;
+    transition: width .08s linear;
+    box-shadow: 0 0 10px rgba(234,84,32,.55);
+  }
+
+  /* ============ Nav direction-aware ============ */
+  #mainNav {
+    transition: transform .35s cubic-bezier(.2,.8,.3,1),
+                box-shadow .3s ease,
+                background-color .3s ease;
+  }
+  #mainNav.is-shrunk { box-shadow: 0 10px 30px -18px rgba(21,17,14,.22); background: rgba(255,255,255,.94); backdrop-filter: blur(10px); }
+  #mainNav.is-shrunk .nav-inner { height: 54px; }
+  #mainNav.is-hidden { transform: translateY(-110%); }
+  .nav-inner { transition: height .25s ease; }
+
+  /* ============ Reveal on scroll (direction aware) ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition:
+      opacity .75s cubic-bezier(.22,.72,.32,1),
+      transform .75s cubic-bezier(.22,.72,.32,1);
+    will-change: opacity, transform;
+  }
+  .reveal.from-up { transform: translateY(-34px); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .magnet-icon, .magnet-ring, #scrollProgress, .reveal { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ============ SEATS (Google Meet vagas) ============ */
+  .seat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .seat {
+    aspect-ratio: 1 / 1.1;
+    color: #EA5420;
+    display: flex; align-items: center; justify-content: center;
+    opacity: .22;
+    transform: scale(.85);
+    transition: opacity .3s ease, transform .3s ease, color .3s ease;
+    will-change: transform, opacity;
+  }
+  .seat svg { width: 100%; height: 100%; }
+  .seat.filled {
+    opacity: 1;
+    transform: scale(1);
+    animation: seatPop .45s cubic-bezier(.2,.9,.35,1.25);
+  }
+  .seat.empty { animation: seatPulse 1.8s ease-in-out infinite; color: #D04518; }
+  @keyframes seatPop {
+    0%   { transform: scale(.55); opacity: 0; }
+    55%  { transform: scale(1.18); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes seatPulse {
+    0%, 100% { opacity: .22; transform: scale(.85); }
+    50%      { opacity: .75; transform: scale(1); }
+  }
+  .progress-track {
+    width: 100%;
+    height: 10px;
+    background: #FFE2D0;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #F16322 0%, #EA5420 60%, #D04518 100%);
+    border-radius: 999px;
+    transition: width .4s ease-out;
+    position: relative;
+  }
+  .progress-fill::after {
+    content: "";
+    position: absolute; right: 0; top: 0; bottom: 0; width: 3px;
+    background: #fff; opacity: .7;
+    animation: progressTip 1.2s ease-in-out infinite;
+  }
+  @keyframes progressTip {
+    0%, 100% { opacity: .3; }
+    50%      { opacity: .9; }
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #EA5420;
+    position: relative;
+  }
+  .live-dot::after {
+    content: ""; position: absolute; inset: -6px; border-radius: 50%;
+    background: rgba(234,84,32,.35);
+    animation: liveRing 1.6s ease-out infinite;
+  }
+  @keyframes liveRing {
+    0%   { transform: scale(.6); opacity: .8; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header id="mainNav" class="sticky top-0 z-40 bg-white nav-shadow">
+  <div class="nav-inner max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2">
+      <span class="magnet-wrap w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
+        <span class="magnet-ring"></span>
+        <svg class="magnet-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Ímã">
+          <path d="M3 4v9a9 9 0 0 0 18 0V4"/>
+          <path d="M9 4v9a3 3 0 0 0 6 0V4"/>
+          <line x1="3" y1="4" x2="9" y2="4"/>
+          <line x1="15" y1="4" x2="21" y2="4"/>
+          <line x1="3" y1="7.5" x2="9" y2="7.5"/>
+          <line x1="15" y1="7.5" x2="21" y2="7.5"/>
+        </svg>
+      </span>
+      <span class="font-display text-xl tracking-wide">MÁQUINA DE MATRÍCULAS</span>
+    </a>
+    <a href="#form" class="hidden md:inline-flex btn-primary rounded-full px-5 py-2.5 text-sm font-semibold">Quero minha vaga na call</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-bg text-white relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28 w-full text-center relative z-10">
+    <span class="chip mx-auto">
+      <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+      CALL AO VIVO · SEGUNDA-FEIRA, 27/04 · 14H · GRATUITA
+    </span>
+    <h1 class="headline font-display text-[42px] sm:text-[58px] md:text-[76px] mt-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+      TRANSFORME SUA<br/>
+      INSTITUIÇÃO DE ENSINO<br/>
+      EM UMA MÁQUINA<br/>
+      DE MATRÍCULAS.
+    </h1>
+    <p class="mt-6 text-white/95 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+      Escolas, autoescolas, faculdades, cursos técnicos e livres. Na <strong>segunda-feira, 14h</strong>,
+      ao vivo e <strong>sem custo</strong>, eu te ensino a implementar o mesmo ecossistema que usei pra
+      gerar matrículas em escala nas maiores edtechs do Brasil e da América Latina.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#form" class="btn-primary bg-white !text-brand-600 hover:!bg-brand-50 rounded-full px-7 py-4 text-base font-bold">
+        QUERO MINHA VAGA NA CALL →
+      </a>
+      <a href="#apresentador" class="rounded-full px-7 py-4 text-base font-semibold border border-white/60 bg-white/5 hover:bg-white/15 backdrop-blur-sm transition">
+        Quem vai apresentar
+      </a>
+    </div>
+
+    <!-- Social proof: logos de edtechs -->
+    <div class="mt-10 flex items-center gap-4 justify-center">
+      <div class="flex -space-x-3">
+        <img src="logo_tera.jpeg" alt="Tera" class="w-11 h-11 rounded-full border-2 border-white object-cover shadow-md">
+        <img src="logo_direcao.png" alt="Direção" class="w-11 h-11 rounded-full border-2 border-white object-cover bg-white shadow-md">
+        <span class="w-11 h-11 rounded-full border-2 border-white bg-brand-700 text-white flex items-center justify-center text-xs font-bold shadow-md">+</span>
+      </div>
+      <div class="text-sm text-white/95 leading-tight text-left">
+        <div class="font-semibold">Edtechs em que já atuei</div>
+        <div class="text-white/80">Brasil e América Latina</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APRESENTADOR -->
+<section id="apresentador" class="py-16 md:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <!-- Portrait 1:1 -->
+    <div class="flex justify-center md:justify-start">
+      <div class="portrait-frame">
+        <img src="Desktop.png" alt="Apresentador da call Máquina de Matrículas" />
+      </div>
+    </div>
+
+    <!-- Copy -->
+    <div>
+      <span class="chip-dark">Quem vai apresentar</span>
+      <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+        DOS BASTIDORES DAS<br/>
+        <span class="text-brand-500">MAIORES EDTECHS</span><br/>
+        DIRETO PRA SUA INSTITUIÇÃO.
+      </h2>
+      <p class="mt-6 text-lg text-ink/75 leading-relaxed">
+        Passei os últimos anos operando a máquina de aquisição de alunos em edtechs que escalam
+        dezenas de milhares de matrículas — no Brasil e na América Latina.
+      </p>
+      <p class="mt-4 text-lg text-ink/75 leading-relaxed">
+        Na <strong>segunda-feira, às 14h</strong>, vou abrir o mesmo ecossistema e te mostrar como
+        implementar na sua instituição de ensino — seja ela uma escola, autoescola, faculdade ou
+        curso técnico. <strong>Sem custo, ao vivo, passo a passo.</strong>
+      </p>
+
+      <!-- Logo strip -->
+      <div class="mt-8">
+        <div class="text-xs uppercase tracking-widest text-ink/50 font-semibold mb-3">Atuação em edtechs como</div>
+        <div class="flex items-center gap-5 flex-wrap">
+          <img src="logo_tera.jpeg" alt="Tera" class="h-12 w-12 rounded-lg object-cover shadow-sm ring-1 ring-ink/5">
+          <img src="logo_direcao.png" alt="Direção" class="h-12 w-12 rounded-lg object-contain bg-white shadow-sm ring-1 ring-ink/5 p-1">
+          <span class="text-ink/55 text-sm font-medium">+ outras do BR e LATAM</span>
+        </div>
+      </div>
+
+      <a href="#form" class="inline-block mt-8 btn-primary rounded-full px-7 py-3.5 text-sm font-bold">
+        QUERO APRENDER NA SEGUNDA →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
+    <div>
+      <span class="chip-dark">Por que funciona</span>
+      <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+        NÃO É TEORIA.<br/>É <span class="text-brand-500">SISTEMA</span>.
+      </h2>
+      <p class="mt-5 text-ink/70 text-lg leading-relaxed max-w-lg">
+        A gente não vende curso motivacional. É um método que a sua secretaria, seu social media
+        e você — gestor de instituição de ensino que não dorme — conseguem operar.
+      </p>
+    </div>
+
+    <ul class="space-y-4 text-lg">
+      <li class="check"><span>Previsibilidade: saber no dia 1 do mês quantas matrículas vão entrar.</span></li>
+      <li class="check"><span>Custo por matrícula controlado, mesmo em cidade pequena.</span></li>
+      <li class="check"><span>Playbook pronto de campanhas para rematrícula, aberta de turmas e período fraco.</span></li>
+      <li class="check"><span>Padrão de atendimento que para de perder lead no WhatsApp.</span></li>
+      <li class="check"><span>Relatórios em linguagem de gestor — não de agência.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="py-16 md:py-24 bg-ink text-white">
+  <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
+    <span class="chip-dark">Resultados reais</span>
+    <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+      INSTITUIÇÕES QUE PARARAM<br/>DE DEPENDER DE <span class="text-brand-400">SORTE</span>.
+    </h2>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6 text-left">
+      <div class="rounded-2xl p-7 bg-white/5 border border-white/10">
+        <div class="font-display text-5xl text-brand-400">+312%</div>
+        <p class="mt-3 text-white/80 text-sm leading-relaxed">aumento em matrículas no primeiro semestre para uma escola bilíngue em Curitiba.</p>
+      </div>
+      <div class="rounded-2xl p-7 bg-white/5 border border-white/10">
+        <div class="font-display text-5xl text-brand-400">R$ 38</div>
+        <p class="mt-3 text-white/80 text-sm leading-relaxed">custo médio por lead qualificado para uma rede de autoescolas com 4 unidades.</p>
+      </div>
+      <div class="rounded-2xl p-7 bg-white/5 border border-white/10">
+        <div class="font-display text-5xl text-brand-400">9 de 10</div>
+        <p class="mt-3 text-white/80 text-sm leading-relaxed">instituições fecham turmas extras até o 3º mês aplicando o ecossistema completo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VAGAS LIMITADAS -->
+<section id="vagas" class="py-16 md:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
+    <span class="chip-dark">
+      <span class="live-dot"></span>
+      Vagas limitadas
+    </span>
+    <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+      RESTAM POUCAS CADEIRAS<br/>
+      NA NOSSA SALA DO<br/>
+      <span class="text-brand-500">GOOGLE MEET</span>.
+    </h2>
+    <p class="mt-5 text-ink/70 text-lg max-w-2xl mx-auto leading-relaxed">
+      A call acontece ao vivo no Google Meet e, pra manter a qualidade da conversa,
+      abrimos <strong>apenas 30 vagas</strong>. Garanta a sua antes que feche.
+    </p>
+
+    <!-- Seat grid -->
+    <div id="seatGrid" class="seat-grid mt-12" aria-hidden="true"></div>
+
+    <!-- Counter -->
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <div class="font-display text-4xl md:text-5xl text-ink">
+        <span id="seatFilled">0</span><span class="text-ink/40">/30</span>
+        <span class="block text-xs tracking-widest text-ink/55 font-sans font-semibold uppercase mt-2">Vagas preenchidas</span>
+      </div>
+      <div class="progress-track max-w-md w-full">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="mt-1 text-sm font-semibold text-brand-600">
+        Restam apenas <span id="seatRemaining">30</span> cadeiras
+      </div>
+    </div>
+
+    <a href="#form" class="inline-block mt-10 btn-primary rounded-full px-8 py-4 text-base font-bold">
+      QUERO GARANTIR MINHA CADEIRA →
+    </a>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="form" class="py-16 md:py-24 bg-brand-50/60">
+  <div class="max-w-5xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="chip-dark">Inscrição gratuita</span>
+      <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+        GARANTA SUA VAGA<br/>
+        NA CALL DE<br/>
+        <span class="text-brand-500">SEGUNDA, 14H</span>.
+      </h2>
+      <p class="mt-5 text-ink/70 text-lg leading-relaxed max-w-md">
+        Ao vivo, sem gravação pública. Vou abrir os 3 pilares que usei nas maiores edtechs do Brasil
+        e da América Latina — e mostrar como adaptar pra realidade da sua instituição.
+      </p>
+
+      <ul class="mt-6 space-y-3 text-base">
+        <li class="check"><span><strong>Pilar 1:</strong> aquisição previsível de alunos, sem depender de indicação.</span></li>
+        <li class="check"><span><strong>Pilar 2:</strong> conversão — transformar interessado em matrícula pagante.</span></li>
+        <li class="check"><span><strong>Pilar 3:</strong> retenção — aluno que fica e vira indicador da sua instituição.</span></li>
+      </ul>
+
+      <div class="mt-7 inline-flex items-center gap-3 bg-white border border-brand-100 rounded-xl px-4 py-3">
+        <svg class="text-brand-500" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="text-sm">
+          <div class="font-semibold">Segunda-feira, 27 de abril</div>
+          <div class="text-ink/60">14h (horário de Brasília) · Online e ao vivo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <div class="bg-white rounded-2xl p-7 md:p-9 border border-brand-100 shadow-[0_30px_60px_-30px_rgba(234,84,32,.35)]">
+      <h3 class="font-display text-2xl md:text-3xl tracking-wide">RESERVE SUA VAGA</h3>
+      <p class="text-ink/60 text-sm mt-1">Leva menos de 40 segundos. Vagas limitadas.</p>
+
+      <form id="leadForm" class="mt-6 space-y-4" novalidate>
+        <div>
+          <label class="block text-sm font-semibold mb-1.5" for="nome">Seu nome</label>
+          <input class="input" id="nome" name="nome" type="text" required placeholder="Ex: Ana Ribeiro" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1.5" for="instituicao">Nome da instituição</label>
+          <input class="input" id="instituicao" name="instituicao" type="text" required placeholder="Ex: Colégio / CFC / Faculdade / Curso Técnico" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1.5" for="funcao">Sua função na instituição</label>
+          <select class="input" id="funcao" name="funcao" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option>Dono(a) / CEO</option>
+            <option>Diretor(a)</option>
+            <option>Coordenador(a) pedagógico(a)</option>
+            <option>Gestor(a) de marketing</option>
+            <option>Gestor(a) comercial / matrículas</option>
+            <option>Secretaria / Atendimento</option>
+            <option>Sócio(a)</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold mb-1.5" for="email">E-mail</label>
+            <input class="input" id="email" name="email" type="email" required placeholder="voce@suainstituicao.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1.5" for="whatsapp">WhatsApp</label>
+            <input class="input" id="whatsapp" name="whatsapp" type="tel" required placeholder="(11) 99999-0000" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1.5" for="alunos">Quantos alunos sua instituição tem hoje?</label>
+          <select class="input" id="alunos" name="alunos" required>
+            <option value="" disabled selected>Selecione uma faixa</option>
+            <option>Até 100 alunos</option>
+            <option>De 100 a 300 alunos</option>
+            <option>De 300 a 800 alunos</option>
+            <option>Mais de 800 alunos</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary w-full rounded-xl py-4 text-base font-bold tracking-wide">
+          QUERO MINHA VAGA NA CALL →
+        </button>
+
+        <p class="text-xs text-ink/55 text-center">
+          Seus dados estão seguros. Sem spam, sem venda de lista.
+        </p>
+
+        <div id="formSuccess" class="form-ok hidden">
+          Vaga garantida! Você receberá o link da call no e-mail e WhatsApp antes de segunda, 14h.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="text-center">
+      <span class="chip-dark">Perguntas comuns</span>
+      <h2 class="headline font-display text-4xl md:text-5xl mt-5">DÚVIDAS FREQUENTES</h2>
+    </div>
+
+    <div class="mt-10 space-y-3">
+      <details class="group border border-brand-100 rounded-xl p-5 open:bg-brand-50/60">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold text-lg">
+          Minha instituição é pequena, funciona pra mim?
+          <span class="text-brand-500 text-2xl transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 text-ink/70">Sim. O método foi desenhado justamente para instituições de ensino que não têm equipe de marketing grande — a operação cabe em 1 secretaria + 1 apoio de mídia. Funciona para escolas, autoescolas, faculdades, cursos técnicos e livres.</p>
+      </details>
+      <details class="group border border-brand-100 rounded-xl p-5 open:bg-brand-50/60">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold text-lg">
+          Em quanto tempo começo a ver matrículas?
+          <span class="text-brand-500 text-2xl transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 text-ink/70">Os primeiros leads qualificados aparecem nas 2 primeiras semanas. O funil completo estabiliza entre 45 e 90 dias.</p>
+      </details>
+      <details class="group border border-brand-100 rounded-xl p-5 open:bg-brand-50/60">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold text-lg">
+          Preciso ter Instagram bombando pra participar?
+          <span class="text-brand-500 text-2xl transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 text-ink/70">Não. O método não depende de viralizar. Ele depende de um funil previsível — a gente te mostra exatamente o que postar e o que anunciar.</p>
+      </details>
+      <details class="group border border-brand-100 rounded-xl p-5 open:bg-brand-50/60">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold text-lg">
+          Preciso pagar para participar?
+          <span class="text-brand-500 text-2xl transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 text-ink/70">Não. A call é <strong>100% gratuita</strong>. Basta reservar sua vaga e estar online no Google Meet na segunda-feira, às 14h.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-16 md:py-20 cta-bg text-white">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
+    <span class="chip">
+      <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+      SEGUNDA-FEIRA, 27/04 · 14H · AO VIVO
+    </span>
+    <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+      SEGUNDA-FEIRA PODE SER<br/>O DIVISOR DE ÁGUAS<br/>DA SUA INSTITUIÇÃO.
+    </h2>
+    <p class="mt-5 text-white/90 text-lg max-w-2xl mx-auto">
+      1h30 de call, 3 pilares e um plano claro pra sair do improviso. Vagas limitadas.
+    </p>
+    <a href="#form" class="inline-block mt-8 bg-white text-brand-600 font-bold rounded-full px-8 py-4 hover:bg-brand-50 transition">
+      GARANTIR MINHA VAGA →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-white/70 py-10">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-2">
+      <span class="w-7 h-7 rounded-md bg-brand-500 flex items-center justify-center">
+        <svg class="magnet-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Ímã">
+          <path d="M3 4v9a9 9 0 0 0 18 0V4"/>
+          <path d="M9 4v9a3 3 0 0 0 6 0V4"/>
+          <line x1="3" y1="4" x2="9" y2="4"/>
+          <line x1="15" y1="4" x2="21" y2="4"/>
+          <line x1="3" y1="7.5" x2="9" y2="7.5"/>
+          <line x1="15" y1="7.5" x2="21" y2="7.5"/>
+        </svg>
+      </span>
+      <span class="font-display tracking-wide text-white">MÁQUINA DE MATRÍCULAS</span>
+    </div>
+    <div>© <span id="year"></span> Máquina de Matrículas. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // WhatsApp mask (simple)
+  const wpp = document.getElementById('whatsapp');
+  wpp.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g,'').slice(0,11);
+    if (v.length > 10) v = v.replace(/(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+    else if (v.length > 6) v = v.replace(/(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    else if (v.length > 2) v = v.replace(/(\d{2})(\d{0,5}).*/, '($1) $2');
+    else if (v.length > 0) v = v.replace(/(\d{0,2}).*/, '($1');
+    e.target.value = v;
+  });
+
+  // ====== Scroll-linked: progress bar + nav direction + reveal ======
+  (() => {
+    const progressEl = document.getElementById('scrollProgress');
+    const navEl = document.getElementById('mainNav');
+    let lastY = window.scrollY;
+    let dir = 'down';
+    let ticking = false;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) > 3) {
+        dir = y > lastY ? 'down' : 'up';
+        lastY = y;
+      }
+
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docH > 0 ? Math.min(100, (y / docH) * 100) : 0;
+      progressEl.style.width = pct + '%';
+
+      if (y > 80) navEl.classList.add('is-shrunk');
+      else navEl.classList.remove('is-shrunk');
+
+      if (y > 280 && dir === 'down') navEl.classList.add('is-hidden');
+      else navEl.classList.remove('is-hidden');
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Reveal
+    const revealSelectors = [
+      'section:not(.hero-bg) h2.headline',
+      'section:not(.hero-bg) .portrait-frame',
+      'section:not(.hero-bg) form',
+      'section:not(.hero-bg) details',
+      'section:not(.hero-bg) ul.space-y-4',
+      'section:not(.hero-bg) .rounded-2xl',
+      'section:not(.hero-bg) .seat-grid',
+      'section:not(.hero-bg) .chip-dark',
+    ].join(', ');
+
+    document.querySelectorAll(revealSelectors).forEach(el => el.classList.add('reveal'));
+
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (dir === 'up') entry.target.classList.add('from-up');
+          entry.target.classList.add('is-visible');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+  })();
+
+  // ====== Seat grid: vagas limitadas (Google Meet) ======
+  (() => {
+    const TOTAL = 30;
+    const FILLED_TARGET = 24; // restam 6
+    const grid = document.getElementById('seatGrid');
+    if (!grid) return;
+
+    const chairSvg = `
+      <svg viewBox="0 0 24 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="2" width="14" height="13" rx="2.5"/>
+        <rect x="3" y="16" width="18" height="3.5" rx="1.2"/>
+        <rect x="5.5" y="19.5" width="2.2" height="5" rx="1"/>
+        <rect x="16.3" y="19.5" width="2.2" height="5" rx="1"/>
+      </svg>`;
+
+    const seats = [];
+    for (let i = 0; i < TOTAL; i++) {
+      const s = document.createElement('div');
+      s.className = 'seat empty';
+      s.innerHTML = chairSvg;
+      grid.appendChild(s);
+      seats.push(s);
+    }
+
+    const filledEl = document.getElementById('seatFilled');
+    const remainEl = document.getElementById('seatRemaining');
+    const progEl   = document.getElementById('progressFill');
+
+    // Shuffle indices so seats fill in a non-sequential, "natural" order
+    const order = Array.from({ length: TOTAL }, (_, i) => i).sort(() => Math.random() - 0.5);
+
+    let started = false;
+    const startAnim = () => {
+      if (started) return; started = true;
+      const DURATION = 2200;
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - t0) / DURATION, 1);
+        const eased = 1 - Math.pow(1 - p, 2.2);
+        const target = Math.floor(eased * FILLED_TARGET);
+        for (let i = 0; i < target; i++) {
+          const s = seats[order[i]];
+          if (s.classList.contains('empty')) {
+            s.classList.remove('empty');
+            s.classList.add('filled');
+          }
+        }
+        filledEl.textContent = target;
+        remainEl.textContent = TOTAL - target;
+        progEl.style.width = (target / TOTAL * 100) + '%';
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    // Trigger when in view
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { startAnim(); io.disconnect(); }
+      });
+    }, { threshold: 0.25 });
+    io.observe(document.getElementById('vagas'));
+  })();
+
+  // Form submit (redireciona para página de obrigado)
+  document.getElementById('leadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.querySelectorAll('input, select, button').forEach(el => el.setAttribute('disabled', 'true'));
+    // TODO: enviar para seu endpoint / CRM / webhook antes do redirect
+    // fetch('/api/lead', { method: 'POST', body: new FormData(form) })
+    //   .finally(() => { window.location.href = 'obrigado.html'; });
+    window.location.href = 'obrigado.html';
+  });
+</script>
+
+</body>
+</html>

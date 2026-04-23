@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Falta 1 passo — Máquina de Matrículas</title>
+<meta name="description" content="Sua inscrição foi recebida. Falta só 1 passo pra garantir sua vaga: entrar no grupo do WhatsApp onde o link do Google Meet será enviado." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Anton', 'Impact', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50:  '#FFF3EC', 100: '#FFE2D0', 200: '#FFC4A0', 300: '#FFA06A',
+            400: '#FF7A3B', 500: '#EA5420', 600: '#D04518', 700: '#A8360F',
+            800: '#7A260A', 900: '#3A1204',
+          },
+          ink: '#15110E',
+          whats: { 500: '#25D366', 600: '#1FBA58', 700: '#128C7E' },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #15110E; background: #fff; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: 'Anton', Impact, sans-serif; letter-spacing: 0.01em; }
+  .headline { line-height: 1.05; text-transform: uppercase; }
+
+  .hero-bg, .cta-bg {
+    position: relative;
+    background:
+      radial-gradient(1100px 500px at 90% -10%, rgba(255,255,255,.18), transparent 60%),
+      radial-gradient(700px 400px at 0% 110%, rgba(0,0,0,.22), transparent 60%),
+      linear-gradient(135deg, #F16322 0%, #EA5420 45%, #C43C11 100%);
+  }
+  .hero-bg::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.5px);
+    background-size: 22px 22px; opacity: .6; pointer-events: none;
+  }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.12); color: #fff;
+    border: 1px solid rgba(255,255,255,.25);
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; letter-spacing: .02em;
+    backdrop-filter: blur(6px);
+  }
+  .chip-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #FFF3EC; color: #D04518;
+    border: 1px solid #FFD6BF;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .nav-shadow { box-shadow: 0 1px 0 rgba(21,17,14,.06); }
+
+  /* Magnet */
+  .magnet-wrap { position: relative; overflow: visible; }
+  .magnet-icon {
+    transform-origin: 50% 88%;
+    animation: magnetWiggle 2.8s ease-in-out infinite;
+  }
+  @keyframes magnetWiggle {
+    0%, 100% { transform: rotate(-7deg); }
+    50%      { transform: rotate(7deg); }
+  }
+  .magnet-ring {
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(234,84,32,.55);
+    animation: magnetRing 2.1s cubic-bezier(.12,.55,.2,1) infinite;
+  }
+  @keyframes magnetRing {
+    0%   { box-shadow: 0 0 0 0 rgba(234,84,32,.55); opacity: .9; }
+    100% { box-shadow: 0 0 0 14px rgba(234,84,32,0); opacity: 0; }
+  }
+
+  /* Success checkmark */
+  .check-big {
+    width: 104px; height: 104px; margin: 0 auto;
+    background: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 18px 40px -8px rgba(0,0,0,.25), 0 0 0 10px rgba(255,255,255,.2);
+    animation: checkPop .55s cubic-bezier(.2,.9,.35,1.25) .15s both;
+  }
+  .check-big svg {
+    width: 54px; height: 54px; color: #16A34A;
+  }
+  .check-big svg path {
+    stroke-dasharray: 60; stroke-dashoffset: 60;
+    animation: checkDraw .55s ease-out .55s forwards;
+  }
+  @keyframes checkPop {
+    0% { transform: scale(.4); opacity: 0; }
+    60% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  @keyframes checkDraw { to { stroke-dashoffset: 0; } }
+
+  /* Confetti (pure CSS) */
+  .confetti {
+    position: absolute; top: -20px;
+    width: 8px; height: 12px;
+    opacity: 0; pointer-events: none;
+    animation: confettiFall 3.5s linear infinite;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* WhatsApp button */
+  .btn-whats {
+    background: linear-gradient(180deg, #25D366 0%, #1FBA58 100%);
+    color: #fff;
+    box-shadow: 0 14px 32px -10px rgba(37,211,102,.55), inset 0 -4px 0 rgba(0,0,0,.14);
+    transition: transform .15s ease, box-shadow .15s ease, filter .2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-whats:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(37,211,102,.6), inset 0 -4px 0 rgba(0,0,0,.18); }
+  .btn-whats:active { transform: translateY(0); }
+  .btn-whats::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25) 48%, transparent 66%);
+    transform: translateX(-100%);
+    animation: shine 3s ease-in-out infinite;
+  }
+  @keyframes shine { 0% { transform: translateX(-100%); } 60% { transform: translateX(120%); } 100% { transform: translateX(120%); } }
+
+  .btn-primary {
+    background: #EA5420; color: #fff;
+    box-shadow: 0 10px 24px -8px rgba(234,84,32,.55), inset 0 -3px 0 rgba(0,0,0,.12);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+  }
+  .btn-primary:hover { background: #D04518; transform: translateY(-1px); }
+
+  /* Live pulse dot */
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #fff;
+    position: relative;
+  }
+  .live-dot::after {
+    content: ""; position: absolute; inset: -6px; border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    animation: liveRing 1.6s ease-out infinite;
+  }
+  @keyframes liveRing {
+    0%   { transform: scale(.6); opacity: .8; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  /* Countdown cells */
+  .countdown-cell {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 16px;
+    padding: 18px 8px 12px;
+    backdrop-filter: blur(6px);
+    min-width: 74px;
+  }
+  .countdown-value {
+    font-family: 'Anton', Impact, sans-serif;
+    font-size: 48px; line-height: 1;
+  }
+  @media (max-width: 640px) {
+    .countdown-value { font-size: 38px; }
+    .countdown-cell { min-width: 64px; padding: 14px 6px 10px; }
+  }
+
+  /* Steps */
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px; border-radius: 14px;
+    background: #fff; border: 1px solid #EFE8E1;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .step.is-active { border-color: #FFB088; box-shadow: 0 14px 30px -16px rgba(234,84,32,.35); }
+  .step.is-done { background: #F7FDF9; border-color: #BBE5CC; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Anton', Impact, sans-serif; font-size: 18px;
+    background: #FFF3EC; color: #D04518;
+  }
+  .step.is-done .step-num { background: #DCFCE7; color: #16A34A; }
+  .step.is-active .step-num { background: #EA5420; color: #fff; animation: stepPulse 1.8s ease-in-out infinite; }
+  @keyframes stepPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(234,84,32,.55); }
+    70%      { box-shadow: 0 0 0 10px rgba(234,84,32,0); }
+  }
+
+  .check-li::before {
+    content: ""; display: inline-block; width: 20px; height: 20px; margin-right: 12px;
+    background: #25D366;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/70% no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/70% no-repeat;
+    border-radius: 6px; flex-shrink: 0; transform: translateY(3px);
+  }
+  .check-li { display: flex; align-items: flex-start; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .magnet-icon, .magnet-ring, .check-big, .check-big svg path, .confetti, .btn-whats::before, .live-dot::after, .step.is-active .step-num {
+      animation: none !important;
+    }
+    .check-big svg path { stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="sticky top-0 z-40 bg-white nav-shadow">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="landing.html" class="flex items-center gap-2">
+      <span class="magnet-wrap w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
+        <span class="magnet-ring"></span>
+        <svg class="magnet-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Ímã">
+          <path d="M3 4v9a9 9 0 0 0 18 0V4"/>
+          <path d="M9 4v9a3 3 0 0 0 6 0V4"/>
+          <line x1="3" y1="4" x2="9" y2="4"/>
+          <line x1="15" y1="4" x2="21" y2="4"/>
+          <line x1="3" y1="7.5" x2="9" y2="7.5"/>
+          <line x1="15" y1="7.5" x2="21" y2="7.5"/>
+        </svg>
+      </span>
+      <span class="font-display text-xl tracking-wide">MÁQUINA DE MATRÍCULAS</span>
+    </a>
+    <a href="#whatsapp" class="hidden md:inline-flex btn-whats rounded-full px-5 py-2.5 text-sm font-bold">
+      Entrar no grupo do WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- HERO: Inscrição confirmada -->
+<section class="hero-bg text-white relative overflow-hidden">
+  <!-- Confetti layer -->
+  <div class="absolute inset-0 pointer-events-none" id="confettiLayer" aria-hidden="true"></div>
+
+  <div class="max-w-3xl mx-auto px-5 md:px-8 py-16 md:py-24 w-full text-center relative z-10">
+    <!-- Progress 1 de 2 -->
+    <div class="flex items-center justify-center gap-3 mb-4 text-xs font-bold tracking-widest text-white/85 uppercase">
+      <span class="inline-flex items-center gap-2">
+        <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        Etapa 1
+      </span>
+      <span class="w-8 h-[2px] bg-white/40"></span>
+      <span class="inline-flex items-center gap-2 opacity-80">
+        <span class="w-5 h-5 rounded-full border-2 border-white/70 flex items-center justify-center text-[10px]">2</span>
+        Etapa 2
+      </span>
+    </div>
+
+    <!-- Success check -->
+    <div class="check-big">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+
+    <span class="chip mt-8 mx-auto">
+      <span class="live-dot"></span>
+      INSCRIÇÃO RECEBIDA · FALTA 1 PASSO
+    </span>
+
+    <h1 class="headline font-display text-[42px] sm:text-[56px] md:text-[68px] mt-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+      SUA VAGA ESTÁ<br/>
+      <span class="italic tracking-wider">QUAAASE</span><br/>
+      GARANTIDA.
+    </h1>
+    <p class="mt-5 text-white/95 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+      Recebemos seus dados, mas <strong>ainda falta 1 passo</strong> pra sua vaga valer de verdade:
+      entrar no grupo do WhatsApp. É por lá que o link do Google Meet vai chegar —
+      <strong>sem isso, você não consegue participar</strong>.
+    </p>
+
+    <!-- CTA PRIMÁRIO: WhatsApp -->
+    <a id="whatsLinkHero" href="https://chat.whatsapp.com/SEU-LINK-AQUI" target="_blank" rel="noopener"
+       class="btn-whats inline-flex items-center gap-3 rounded-full px-8 py-5 mt-8 text-base md:text-lg font-bold">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16.003 3.2C9.002 3.2 3.307 8.894 3.307 15.897c0 2.508.725 4.96 2.099 7.07L3.2 28.8l5.99-1.566a12.64 12.64 0 0 0 6.81 1.994h.006c7 0 12.697-5.695 12.7-12.697 0-3.39-1.32-6.578-3.718-8.977A12.62 12.62 0 0 0 16.003 3.2zm0 23.12h-.005a10.47 10.47 0 0 1-5.338-1.463l-.383-.228-3.554.93.95-3.462-.25-.398a10.44 10.44 0 0 1-1.6-5.6c.004-5.79 4.716-10.5 10.514-10.5 2.808 0 5.444 1.095 7.425 3.08a10.42 10.42 0 0 1 3.073 7.432c-.002 5.79-4.714 10.49-10.503 10.49zm5.766-7.852c-.316-.158-1.87-.924-2.16-1.03-.29-.105-.5-.158-.71.158-.21.316-.82 1.03-1.005 1.243-.185.21-.37.237-.685.08-.317-.158-1.336-.493-2.545-1.57-.94-.84-1.575-1.874-1.76-2.19-.184-.317-.02-.488.138-.646.142-.142.316-.37.473-.555.158-.185.21-.317.317-.528.105-.21.052-.395-.027-.553-.08-.157-.71-1.71-.974-2.34-.256-.615-.517-.532-.71-.542-.184-.008-.395-.01-.605-.01s-.553.08-.842.395c-.29.317-1.104 1.08-1.104 2.632s1.13 3.053 1.288 3.263c.158.21 2.225 3.395 5.39 4.76.753.325 1.34.52 1.8.666.756.24 1.444.206 1.988.125.607-.09 1.87-.764 2.133-1.503.263-.738.263-1.37.184-1.502-.08-.132-.29-.21-.606-.37z"/>
+      </svg>
+      ENTRAR NO GRUPO AGORA
+      <span class="opacity-70">→</span>
+    </a>
+
+    <!-- Aviso de expiração -->
+    <div class="mt-5 inline-flex items-center gap-2 bg-white/10 border border-white/25 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Se você sair sem entrar no grupo, sua vaga pode ser liberada pra lista de espera.
+    </div>
+
+    <!-- Countdown -->
+    <div class="mt-10">
+      <div class="text-xs uppercase tracking-widest text-white/80 font-semibold">A call começa em</div>
+      <div class="mt-3 flex items-start justify-center gap-2 sm:gap-3">
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-days">00</div>
+          <div class="text-[11px] uppercase tracking-widest text-white/75 mt-1">dias</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-hours">00</div>
+          <div class="text-[11px] uppercase tracking-widest text-white/75 mt-1">horas</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-minutes">00</div>
+          <div class="text-[11px] uppercase tracking-widest text-white/75 mt-1">min</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="countdown-value" id="cd-seconds">00</div>
+          <div class="text-[11px] uppercase tracking-widest text-white/75 mt-1">seg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP CTA -->
+<section id="whatsapp" class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 text-center">
+    <span class="chip-dark">
+      <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+      Próximo passo obrigatório
+    </span>
+    <h2 class="headline font-display text-4xl md:text-6xl mt-5">
+      ENTRE NO <span class="text-brand-500">GRUPO DO WHATSAPP</span><br/>
+      PRA RECEBER O LINK DA CALL.
+    </h2>
+    <p class="mt-5 text-ink/70 text-lg leading-relaxed max-w-2xl mx-auto">
+      O link do Google Meet e o aviso de abertura são liberados <strong>exclusivamente no grupo</strong>.
+      Sem entrar, você não consegue participar.
+    </p>
+
+    <a id="whatsLink" href="https://chat.whatsapp.com/SEU-LINK-AQUI" target="_blank" rel="noopener"
+       class="btn-whats inline-flex items-center gap-3 rounded-full px-8 py-5 mt-9 text-base md:text-lg font-bold">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16.003 3.2C9.002 3.2 3.307 8.894 3.307 15.897c0 2.508.725 4.96 2.099 7.07L3.2 28.8l5.99-1.566a12.64 12.64 0 0 0 6.81 1.994h.006c7 0 12.697-5.695 12.7-12.697 0-3.39-1.32-6.578-3.718-8.977A12.62 12.62 0 0 0 16.003 3.2zm0 23.12h-.005a10.47 10.47 0 0 1-5.338-1.463l-.383-.228-3.554.93.95-3.462-.25-.398a10.44 10.44 0 0 1-1.6-5.6c.004-5.79 4.716-10.5 10.514-10.5 2.808 0 5.444 1.095 7.425 3.08a10.42 10.42 0 0 1 3.073 7.432c-.002 5.79-4.714 10.49-10.503 10.49zm5.766-7.852c-.316-.158-1.87-.924-2.16-1.03-.29-.105-.5-.158-.71.158-.21.316-.82 1.03-1.005 1.243-.185.21-.37.237-.685.08-.317-.158-1.336-.493-2.545-1.57-.94-.84-1.575-1.874-1.76-2.19-.184-.317-.02-.488.138-.646.142-.142.316-.37.473-.555.158-.185.21-.317.317-.528.105-.21.052-.395-.027-.553-.08-.157-.71-1.71-.974-2.34-.256-.615-.517-.532-.71-.542-.184-.008-.395-.01-.605-.01s-.553.08-.842.395c-.29.317-1.104 1.08-1.104 2.632s1.13 3.053 1.288 3.263c.158.21 2.225 3.395 5.39 4.76.753.325 1.34.52 1.8.666.756.24 1.444.206 1.988.125.607-.09 1.87-.764 2.133-1.503.263-.738.263-1.37.184-1.502-.08-.132-.29-.21-.606-.37z"/>
+      </svg>
+      ENTRAR NO GRUPO AGORA
+      <span class="opacity-70">→</span>
+    </a>
+
+    <p class="mt-4 text-sm text-ink/55">
+      Grupo exclusivo. Sem spam. Moderado pela equipe Máquina de Matrículas.
+    </p>
+
+    <!-- Benefícios do grupo -->
+    <div class="mt-12 text-left bg-brand-50/60 rounded-2xl p-6 md:p-8 border border-brand-100">
+      <div class="font-display text-xl tracking-wide text-ink">O QUE VOCÊ RECEBE NO GRUPO:</div>
+      <ul class="mt-4 space-y-3 text-base">
+        <li class="check-li"><span>Link do Google Meet enviado <strong>30 minutos antes</strong> da call.</span></li>
+        <li class="check-li"><span>Lembretes na véspera e no dia pra você não perder o horário.</span></li>
+        <li class="check-li"><span>Material complementar exclusivo (templates e checklist dos 3 pilares).</span></li>
+        <li class="check-li"><span>Acesso direto a mim e à minha equipe pra tirar dúvidas antes da call.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section class="py-16 md:py-20 bg-brand-50/40">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="text-center">
+      <span class="chip-dark">Próximos passos</span>
+      <h2 class="headline font-display text-3xl md:text-5xl mt-5">
+        COMO FUNCIONA DAQUI<br/>ATÉ A <span class="text-brand-500">CALL DE SEGUNDA</span>.
+      </h2>
+    </div>
+
+    <div class="mt-10 space-y-3">
+      <div class="step is-done">
+        <div class="step-num">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <div class="font-semibold text-lg">Você se inscreveu</div>
+          <div class="text-ink/65 text-sm mt-1">Sua vaga está separada na lista.</div>
+        </div>
+      </div>
+
+      <div class="step is-active">
+        <div class="step-num">2</div>
+        <div class="flex-1">
+          <div class="font-semibold text-lg">Entre no grupo do WhatsApp <span class="text-brand-600">(agora)</span></div>
+          <div class="text-ink/65 text-sm mt-1">É por onde o link do Google Meet será enviado. Sem isso, você não acessa a call.</div>
+          <a href="#whatsapp" class="inline-flex items-center gap-2 mt-3 text-sm font-bold text-whats-600 hover:text-whats-700">
+            Entrar agora →
+          </a>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="font-semibold text-lg">Receba o link do Google Meet</div>
+          <div class="text-ink/65 text-sm mt-1">30 minutos antes da call, no grupo. Fique de olho.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="font-semibold text-lg">Esteja online segunda, 14h</div>
+          <div class="text-ink/65 text-sm mt-1">Separe ~1h30. Vale silenciar o WhatsApp do celular durante a call.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-14 md:py-20 cta-bg text-white">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 text-center">
+    <h2 class="headline font-display text-3xl md:text-5xl">
+      NÃO DEIXE PRA DEPOIS.<br/>
+      ENTRE NO GRUPO AGORA.
+    </h2>
+    <p class="mt-4 text-white/90 text-lg max-w-xl mx-auto">
+      Leva 10 segundos. Se fechar essa página sem entrar, você perde o link da call.
+    </p>
+    <a id="whatsLinkBottom" href="https://chat.whatsapp.com/SEU-LINK-AQUI" target="_blank" rel="noopener"
+       class="btn-whats inline-flex items-center gap-3 rounded-full px-8 py-4 mt-8 text-base font-bold">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16.003 3.2C9.002 3.2 3.307 8.894 3.307 15.897c0 2.508.725 4.96 2.099 7.07L3.2 28.8l5.99-1.566a12.64 12.64 0 0 0 6.81 1.994h.006c7 0 12.697-5.695 12.7-12.697 0-3.39-1.32-6.578-3.718-8.977A12.62 12.62 0 0 0 16.003 3.2zm0 23.12h-.005a10.47 10.47 0 0 1-5.338-1.463l-.383-.228-3.554.93.95-3.462-.25-.398a10.44 10.44 0 0 1-1.6-5.6c.004-5.79 4.716-10.5 10.514-10.5 2.808 0 5.444 1.095 7.425 3.08a10.42 10.42 0 0 1 3.073 7.432c-.002 5.79-4.714 10.49-10.503 10.49zm5.766-7.852c-.316-.158-1.87-.924-2.16-1.03-.29-.105-.5-.158-.71.158-.21.316-.82 1.03-1.005 1.243-.185.21-.37.237-.685.08-.317-.158-1.336-.493-2.545-1.57-.94-.84-1.575-1.874-1.76-2.19-.184-.317-.02-.488.138-.646.142-.142.316-.37.473-.555.158-.185.21-.317.317-.528.105-.21.052-.395-.027-.553-.08-.157-.71-1.71-.974-2.34-.256-.615-.517-.532-.71-.542-.184-.008-.395-.01-.605-.01s-.553.08-.842.395c-.29.317-1.104 1.08-1.104 2.632s1.13 3.053 1.288 3.263c.158.21 2.225 3.395 5.39 4.76.753.325 1.34.52 1.8.666.756.24 1.444.206 1.988.125.607-.09 1.87-.764 2.133-1.503.263-.738.263-1.37.184-1.502-.08-.132-.29-.21-.606-.37z"/>
+      </svg>
+      ENTRAR NO GRUPO →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-white/70 py-10">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-2">
+      <span class="w-7 h-7 rounded-md bg-brand-500 flex items-center justify-center">
+        <svg class="magnet-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Ímã">
+          <path d="M3 4v9a9 9 0 0 0 18 0V4"/>
+          <path d="M9 4v9a3 3 0 0 0 6 0V4"/>
+          <line x1="3" y1="4" x2="9" y2="4"/>
+          <line x1="15" y1="4" x2="21" y2="4"/>
+          <line x1="3" y1="7.5" x2="9" y2="7.5"/>
+          <line x1="15" y1="7.5" x2="21" y2="7.5"/>
+        </svg>
+      </span>
+      <span class="font-display tracking-wide text-white">MÁQUINA DE MATRÍCULAS</span>
+    </div>
+    <div>© <span id="year"></span> Máquina de Matrículas. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============ Countdown para segunda 27/04 às 14h (Brasília) ============
+  (() => {
+    const TARGET = new Date('2026-04-27T14:00:00-03:00').getTime();
+    const d = document.getElementById('cd-days');
+    const h = document.getElementById('cd-hours');
+    const m = document.getElementById('cd-minutes');
+    const s = document.getElementById('cd-seconds');
+    const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+
+    const tick = () => {
+      const diff = TARGET - Date.now();
+      if (diff <= 0) {
+        d.textContent = h.textContent = m.textContent = s.textContent = '00';
+        return;
+      }
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor(diff / 3600000) % 24;
+      const mins = Math.floor(diff / 60000) % 60;
+      const secs = Math.floor(diff / 1000) % 60;
+      d.textContent = pad(days);
+      h.textContent = pad(hours);
+      m.textContent = pad(mins);
+      s.textContent = pad(secs);
+    };
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ============ Confetti on load ============
+  (() => {
+    const layer = document.getElementById('confettiLayer');
+    if (!layer) return;
+    const colors = ['#FFFFFF', '#FFE2D0', '#FFB088', '#FF7A3B', '#FDDD80'];
+    const COUNT = 28;
+    for (let i = 0; i < COUNT; i++) {
+      const c = document.createElement('span');
+      c.className = 'confetti';
+      c.style.left = (Math.random() * 100) + '%';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDelay = (Math.random() * 2.5) + 's';
+      c.style.animationDuration = (2.8 + Math.random() * 2) + 's';
+      c.style.transform = `rotate(${Math.random() * 360}deg)`;
+      if (Math.random() > .5) c.style.borderRadius = '50%';
+      if (Math.random() > .7) { c.style.width = '6px'; c.style.height = '6px'; }
+      layer.appendChild(c);
+    }
+  })();
+</script>
+
+</body>
+</html>
