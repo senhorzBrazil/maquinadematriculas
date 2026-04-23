@@ -702,7 +702,7 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"
   // ============================================
   // CONFIGURAÇÕES — AJUSTE AQUI
   // ============================================
-  const WEBHOOK_URL = 'https://hook.us2.make.com/iy01c86u4psqf684pw1cbd9f6lwmscfl'; // ← TROQUE PELA URL DO SEU WEBHOOK
+  const WEBHOOK_URL = 'https://hook.us2.make.com/iy01c86u4psqf684pw1cbd9f6lwmscfl';
   const REDIRECT_URL = 'https://maquinadematriculas.vercel.app/obrigado';
   // ============================================
 
@@ -841,7 +841,7 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"
   })();
 
   // ============================================
-  // FORM SUBMIT — Webhook + Redirect
+  // FORM SUBMIT — Webhook (Make.com) + Redirect
   // ============================================
   document.getElementById('leadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -851,43 +851,71 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"
     // Desabilita campos durante envio
     form.querySelectorAll('input, select, button').forEach(el => el.setAttribute('disabled', 'true'));
 
-    // Captura TODOS os dados do form
-    const formData = new FormData(form);
-    const payload = {};
-    formData.forEach((value, key) => { payload[key] = value; });
+    // Helper pra ler cada campo com nome explícito
+    const val = (name) => (form.elements[name]?.value || '').trim();
 
-    // Metadados úteis pra rastreamento
-    payload.timestamp = new Date().toISOString();
-    payload.page_url = window.location.href;
-    payload.referrer = document.referrer || 'direct';
-    payload.user_agent = navigator.userAgent;
+    // Normaliza o WhatsApp (mantém máscara E fornece só os dígitos)
+    const whatsappMasked = val('whatsapp');              // (11) 99999-0000
+    const whatsappDigits = whatsappMasked.replace(/\D/g, ''); // 11999990000
+    const whatsappE164   = whatsappDigits ? '+55' + whatsappDigits : '';
 
-    // UTM params (se vier da campanha do Meta Ads)
+    // UTMs e IDs de campanha (se vierem da URL)
     const urlParams = new URLSearchParams(window.location.search);
-    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(k => {
-      const v = urlParams.get(k);
-      if (v) payload[k] = v;
-    });
+    const getParam = (k) => urlParams.get(k) || '';
+
+    // Payload estruturado: cada dado em um campo separado e nomeado
+    const payload = {
+      // ===== Dados do lead =====
+      nome:             val('nome'),
+      email:            val('email'),
+      whatsapp:         whatsappMasked,
+      whatsapp_numero:  whatsappDigits,   // só números — útil pra API de WhatsApp
+      whatsapp_e164:    whatsappE164,     // formato internacional (+55...)
+      instituicao:      val('instituicao'),
+      funcao:           val('funcao'),
+      alunos_faixa:     val('alunos'),
+
+      // ===== Metadados do envio =====
+      enviado_em:       new Date().toISOString(),
+      pagina:           window.location.href,
+      origem_referrer:  document.referrer || 'direct',
+      user_agent:       navigator.userAgent,
+      idioma_navegador: navigator.language || '',
+
+      // ===== UTMs e tracking de ads =====
+      utm_source:   getParam('utm_source'),
+      utm_medium:   getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      utm_content:  getParam('utm_content'),
+      utm_term:     getParam('utm_term'),
+      fbclid:       getParam('fbclid'),
+      gclid:        getParam('gclid'),
+    };
 
     // Mostra mensagem de sucesso
     document.getElementById('formSuccess').classList.remove('hidden');
 
-    // Envia para o webhook (não bloqueia o redirect se falhar)
+    // Envia para o Make.com (não bloqueia o redirect se falhar)
     try {
       await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        // keepalive permite que a requisição continue mesmo após o redirect
-        keepalive: true
+        keepalive: true  // garante envio mesmo após o redirect
       });
     } catch (err) {
       console.error('Webhook error:', err);
-      // Continua o redirect mesmo se o webhook falhar
+    }
+
+    // Evento Lead do Meta Pixel (dispara junto com o envio)
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Inscrição Call Máquina de Matrículas',
+        content_category: payload.funcao,
+      });
     }
 
     // Redireciona para a página de obrigado
-    // O evento Lead do Meta Pixel vai disparar lá
     window.location.href = REDIRECT_URL;
   });
 </script>
