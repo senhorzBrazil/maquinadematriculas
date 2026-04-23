@@ -5,6 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Máquina de Matrículas — Call ao vivo, segunda 14h</title>
 <meta name="description" content="Call ao vivo e gratuita para gestores de instituições de ensino — escolas, autoescolas, faculdades, cursos técnicos. Transforme sua instituição em uma máquina de matrículas." />
+
+<!-- ============================================ -->
+<!-- META PIXEL — TROQUE 'SEU_PIXEL_ID' PELO ID  -->
+<!-- ============================================ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'SEU_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"
+/></noscript>
+<!-- ============================================ -->
+<!-- FIM META PIXEL                              -->
+<!-- ============================================ -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -67,7 +90,6 @@
       radial-gradient(700px 400px at 0% 110%, rgba(0,0,0,.22), transparent 60%),
       linear-gradient(135deg, #F16322 0%, #EA5420 45%, #C43C11 100%);
   }
-  /* Subtle doodle pattern layered over the hero bg for texture */
   .hero-bg::before {
     content: "";
     position: absolute; inset: 0;
@@ -143,15 +165,12 @@
     content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
     border-left: 8px solid #FFD6BF; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
   }
-  /* form message */
   .form-ok {
     background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;
     border-radius: 10px; padding: 12px 14px; font-size: 14px; font-weight: 500;
   }
-  /* subtle top nav */
   .nav-shadow { box-shadow: 0 1px 0 rgba(21,17,14,.06); }
 
-  /* ============ Magnet animations ============ */
   .magnet-wrap { position: relative; overflow: visible; }
   .magnet-icon {
     transform-origin: 50% 88%;
@@ -173,7 +192,6 @@
     100% { box-shadow: 0 0 0 14px rgba(234,84,32,0); opacity: 0; }
   }
 
-  /* ============ Scroll progress bar ============ */
   #scrollProgress {
     position: fixed; top: 0; left: 0; height: 3px;
     width: 0%;
@@ -183,7 +201,6 @@
     box-shadow: 0 0 10px rgba(234,84,32,.55);
   }
 
-  /* ============ Nav direction-aware ============ */
   #mainNav {
     transition: transform .35s cubic-bezier(.2,.8,.3,1),
                 box-shadow .3s ease,
@@ -194,7 +211,6 @@
   #mainNav.is-hidden { transform: translateY(-110%); }
   .nav-inner { transition: height .25s ease; }
 
-  /* ============ Reveal on scroll (direction aware) ============ */
   .reveal {
     opacity: 0;
     transform: translateY(34px);
@@ -211,7 +227,6 @@
     .reveal { opacity: 1; transform: none; }
   }
 
-  /* ============ SEATS (Google Meet vagas) ============ */
   .seat-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -287,10 +302,8 @@
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
 <div id="scrollProgress" aria-hidden="true"></div>
 
-<!-- NAV -->
 <header id="mainNav" class="sticky top-0 z-40 bg-white nav-shadow">
   <div class="nav-inner max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
     <a href="#" class="flex items-center gap-2">
@@ -311,7 +324,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero-bg text-white relative overflow-hidden">
   <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28 w-full text-center relative z-10">
     <span class="chip mx-auto">
@@ -339,7 +351,6 @@
       </a>
     </div>
 
-    <!-- Social proof: logos de edtechs -->
     <div class="mt-10 flex items-center gap-4 justify-center">
       <div class="flex -space-x-3">
         <img src="logo_tera.jpeg" alt="Tera" class="w-11 h-11 rounded-full border-2 border-white object-cover shadow-md">
@@ -354,17 +365,14 @@
   </div>
 </section>
 
-<!-- APRESENTADOR -->
 <section id="apresentador" class="py-16 md:py-28 bg-white">
   <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-    <!-- Portrait 1:1 -->
     <div class="flex justify-center md:justify-start">
       <div class="portrait-frame">
         <img src="Desktop.png" alt="Apresentador da call Máquina de Matrículas" />
       </div>
     </div>
 
-    <!-- Copy -->
     <div>
       <span class="chip-dark">Quem vai apresentar</span>
       <h2 class="headline font-display text-4xl md:text-6xl mt-5">
@@ -382,7 +390,6 @@
         curso técnico. <strong>Sem custo, ao vivo, passo a passo.</strong>
       </p>
 
-      <!-- Logo strip -->
       <div class="mt-8">
         <div class="text-xs uppercase tracking-widest text-ink/50 font-semibold mb-3">Atuação em edtechs como</div>
         <div class="flex items-center gap-5 flex-wrap">
@@ -399,7 +406,6 @@
   </div>
 </section>
 
-<!-- BENEFITS -->
 <section class="py-16 md:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
     <div>
@@ -423,7 +429,6 @@
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
 <section class="py-16 md:py-24 bg-ink text-white">
   <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
     <span class="chip-dark">Resultados reais</span>
@@ -448,7 +453,6 @@
   </div>
 </section>
 
-<!-- VAGAS LIMITADAS -->
 <section id="vagas" class="py-16 md:py-24 bg-white">
   <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
     <span class="chip-dark">
@@ -465,10 +469,8 @@
       abrimos <strong>apenas 30 vagas</strong>. Garanta a sua antes que feche.
     </p>
 
-    <!-- Seat grid -->
     <div id="seatGrid" class="seat-grid mt-12" aria-hidden="true"></div>
 
-    <!-- Counter -->
     <div class="mt-8 flex flex-col items-center gap-3">
       <div class="font-display text-4xl md:text-5xl text-ink">
         <span id="seatFilled">0</span><span class="text-ink/40">/30</span>
@@ -488,7 +490,6 @@
   </div>
 </section>
 
-<!-- FORM -->
 <section id="form" class="py-16 md:py-24 bg-brand-50/60">
   <div class="max-w-5xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
     <div>
@@ -518,7 +519,6 @@
       </div>
     </div>
 
-    <!-- Form card -->
     <div class="bg-white rounded-2xl p-7 md:p-9 border border-brand-100 shadow-[0_30px_60px_-30px_rgba(234,84,32,.35)]">
       <h3 class="font-display text-2xl md:text-3xl tracking-wide">RESERVE SUA VAGA</h3>
       <p class="text-ink/60 text-sm mt-1">Leva menos de 40 segundos. Vagas limitadas.</p>
@@ -576,14 +576,13 @@
         </p>
 
         <div id="formSuccess" class="form-ok hidden">
-          Vaga garantida! Você receberá o link da call no e-mail e WhatsApp antes de segunda, 14h.
+          Vaga garantida! Redirecionando...
         </div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="py-16 md:py-24 bg-white">
   <div class="max-w-3xl mx-auto px-5 md:px-8">
     <div class="text-center">
@@ -624,7 +623,6 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section class="py-16 md:py-20 cta-bg text-white">
   <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
     <span class="chip">
@@ -643,7 +641,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="bg-ink text-white/70 py-10">
   <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
     <div class="flex items-center gap-2">
@@ -664,9 +661,16 @@
 </footer>
 
 <script>
+  // ============================================
+  // CONFIGURAÇÕES — AJUSTE AQUI
+  // ============================================
+  const WEBHOOK_URL = 'https://SEU-WEBHOOK-AQUI.com/endpoint'; // ← TROQUE PELA URL DO SEU WEBHOOK
+  const REDIRECT_URL = 'https://maquinadematriculas.vercel.app/obrigado';
+  // ============================================
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // WhatsApp mask (simple)
+  // WhatsApp mask
   const wpp = document.getElementById('whatsapp');
   wpp.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g,'').slice(0,11);
@@ -677,7 +681,7 @@
     e.target.value = v;
   });
 
-  // ====== Scroll-linked: progress bar + nav direction + reveal ======
+  // Scroll progress + nav direction + reveal
   (() => {
     const progressEl = document.getElementById('scrollProgress');
     const navEl = document.getElementById('mainNav');
@@ -710,7 +714,6 @@
       }
     }, { passive: true });
 
-    // Reveal
     const revealSelectors = [
       'section:not(.hero-bg) h2.headline',
       'section:not(.hero-bg) .portrait-frame',
@@ -737,10 +740,10 @@
     document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
   })();
 
-  // ====== Seat grid: vagas limitadas (Google Meet) ======
+  // Seat grid
   (() => {
     const TOTAL = 30;
-    const FILLED_TARGET = 24; // restam 6
+    const FILLED_TARGET = 24;
     const grid = document.getElementById('seatGrid');
     if (!grid) return;
 
@@ -765,7 +768,6 @@
     const remainEl = document.getElementById('seatRemaining');
     const progEl   = document.getElementById('progressFill');
 
-    // Shuffle indices so seats fill in a non-sequential, "natural" order
     const order = Array.from({ length: TOTAL }, (_, i) => i).sort(() => Math.random() - 0.5);
 
     let started = false;
@@ -792,7 +794,6 @@
       requestAnimationFrame(step);
     };
 
-    // Trigger when in view
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { startAnim(); io.disconnect(); }
@@ -801,16 +802,55 @@
     io.observe(document.getElementById('vagas'));
   })();
 
-  // Form submit (redireciona para página de obrigado)
-  document.getElementById('leadForm').addEventListener('submit', (e) => {
+  // ============================================
+  // FORM SUBMIT — Webhook + Redirect
+  // ============================================
+  document.getElementById('leadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
     if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    // Desabilita campos durante envio
     form.querySelectorAll('input, select, button').forEach(el => el.setAttribute('disabled', 'true'));
-    // TODO: enviar para seu endpoint / CRM / webhook antes do redirect
-    // fetch('/api/lead', { method: 'POST', body: new FormData(form) })
-    //   .finally(() => { window.location.href = 'obrigado.html'; });
-    window.location.href = 'obrigado.html';
+
+    // Captura TODOS os dados do form
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach((value, key) => { payload[key] = value; });
+
+    // Metadados úteis pra rastreamento
+    payload.timestamp = new Date().toISOString();
+    payload.page_url = window.location.href;
+    payload.referrer = document.referrer || 'direct';
+    payload.user_agent = navigator.userAgent;
+
+    // UTM params (se vier da campanha do Meta Ads)
+    const urlParams = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(k => {
+      const v = urlParams.get(k);
+      if (v) payload[k] = v;
+    });
+
+    // Mostra mensagem de sucesso
+    document.getElementById('formSuccess').classList.remove('hidden');
+
+    // Envia para o webhook (não bloqueia o redirect se falhar)
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        // keepalive permite que a requisição continue mesmo após o redirect
+        keepalive: true
+      });
+    } catch (err) {
+      console.error('Webhook error:', err);
+      // Continua o redirect mesmo se o webhook falhar
+    }
+
+    // Redireciona para a página de obrigado
+    // O evento Lead do Meta Pixel vai disparar lá
+    window.location.href = REDIRECT_URL;
   });
 </script>
 
